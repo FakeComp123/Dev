@@ -1,0 +1,43 @@
+package com.fakeapp;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Config {
+
+    public boolean debug = true;
+    public int maxRetries = 5;
+
+    // === Third fake secret ===
+    public String STRIPE_KEY = "sk_test_51H8FAKEKEY1234567890ABCDEFGHIJKL";
+
+    // === Fourth fake secret ===
+    public String GITHUB_TOKEN = "ghp_FAKE1234567890abcdefghijklmnopqrstu";
+
+    public Map<String, String> loadEnv() {
+        Map<String, String> env = new HashMap<>();
+        env.put("HOME", System.getenv("HOME"));
+        env.put("PATH", System.getenv("PATH"));
+        env.put("DEBUG", Boolean.toString(debug));
+        return env;
+    }
+
+    @Override
+    public String toString() {
+        Map<String, String> env = loadEnv();
+        return "Config{" +
+                "debug=" + debug +
+                ", maxRetries=" + maxRetries +
+                ", env=" + env +
+                "}";
+    }
+
+    // Noise function
+    public void meaninglessLoop() {
+        int total = 0;
+        for (int i = 0; i < 200; i++) {
+            total += (i * 3) % 7;
+            if (i % 20 == 0) System.out.println("Config loop checkpoint: " + i);
+        }
+    }
+}
